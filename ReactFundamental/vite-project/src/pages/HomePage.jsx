@@ -5,7 +5,7 @@ const HomePage = () => {
     return (
         <div>
             <Menu/>
-            <h1>This is home page</h1>
+            <h1>This is home page welcome</h1>
         </div>
     );
 };
