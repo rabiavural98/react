@@ -1,17 +1,37 @@
-import React, {useRef} from 'react';
+import React, {useState} from 'react';
 
 const App = () => {
- let myHeadLine = useRef();
+    const [list, setList] = useState([])
+    const [item, setItem] = useState("")
 
- const change=()=>{
-     
- }
-    return (
-        <div>
-           <h1 className='text-success'>This is head Line</h1>
-            <button onClick={change}>Click</button>
-        </div>
-    );
-};
+    const AddToList = () => {
+        list.push(item)
+        setList([...list]);
+    }
+        return (
+            <div>
+           <table>
+               <tbody>{
+                   list.length!==0?(
+                      list.map((element,index)=>{
+                          return(
+                              <tr>
+                                  <td>{element}</td>
+                                  <td><button>Remove</button></td>
 
-export default App;
+                              </tr>
+                          )
+                      }) 
+                   ):(<tr></tr>)
+               }</tbody>
+           </table>     
+                
+                
+                
+                
+                <input onChange={(e) => setItem(e.target.value)} placeholder='Item'/>
+                <button onClick={AddToList}>Add</button>
+            </div>
+        );
+    };
+    export default App;
