@@ -1,37 +1,18 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 
 const App = () => {
-    const [list, setList] = useState([])
-    const [item, setItem] = useState("")
+    let [data,setData]=useState();
+    
+    useEffect(()=>{
+    fetch('https://dummyjson.com/products/1')
+        .then(res=>res.json())
+        .then(json=>setData(json))
+    },[])
+    return (
+        <div>
+            {JSON.stringify(data)} 
+        </div>
+    );
+};
 
-    const AddToList = () => {
-        list.push(item)
-        setList([...list]);
-    }
-        return (
-            <div>
-           <table>
-               <tbody>{
-                   list.length!==0?(
-                      list.map((element,index)=>{
-                          return(
-                              <tr>
-                                  <td>{element}</td>
-                                  <td><button>Remove</button></td>
-
-                              </tr>
-                          )
-                      }) 
-                   ):(<tr></tr>)
-               }</tbody>
-           </table>     
-                
-                
-                
-                
-                <input onChange={(e) => setItem(e.target.value)} placeholder='Item'/>
-                <button onClick={AddToList}>Add</button>
-            </div>
-        );
-    };
-    export default App;
+export default App;
