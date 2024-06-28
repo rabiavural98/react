@@ -4,9 +4,11 @@ const App = () => {
     let [data,setData]=useState();
     
     useEffect(()=>{
-    fetch('https://dummyjson.com/products/1')
-        .then(res=>res.json())
-        .then(json=>setData(json))
+        (async()=> {
+         let response=await fetch('https://dummyjson.com/products/1')  
+          let json=await response.json()
+          setData(json)  
+        })()
     },[])
     return (
         <div>
