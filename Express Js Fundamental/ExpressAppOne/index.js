@@ -1,15 +1,22 @@
 ﻿var express=require('express');
 
+
 app=express();
 
-app.post("/",function(req,res){
-    
-    let firstName=req.query.firstName;
-    let lastName=req.query.lastName;
-    
-    res.send(firstName +" "+ lastName);
-   
+app.get('/',function(req,res){
+    res.send('This is Home page')
 })
+app.use('/about',function(req,res,next) {
+    console.log('I am from About validation')
+    next();
+})
+app.get('/about',function(req,res){
+    res.send('This is About page')
+})
+app.get('/contact',function(req,res){
+    res.send('This is Contact page')
+})
+
 app.listen(8000,function(){
     console.log("Server Run Success")
 })
