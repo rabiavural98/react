@@ -12,11 +12,24 @@ mongoose.connect('mongodb://127.0.0.1:27017/test').then(()=>console.log('Databas
 })
  const User =mongoose.model('User',userSchema);
  
- async function fetchInformation(){
-     const users =await User.find({isMarried:false}).select('name salary').sort('-salary').limit(2);
-     console.log(users);
- }
+ //Comparison Operator
+//eq    equal	
+//ne    not equal	
+// gt   greater than	
+// gte  greater than or equal to	
+// lt   less than	
+// lte  less than or equal to	
+// in   in an array
+// nin  not in an array
 
+//Problem I will Solve
+// Find those users whose age is greather then 40 or they are unmarried 
+// Find Only Name
+// Shorted them by name
+
+async function fetchInformation() {
+await User.deleteMany({isMarried:false});
+}
  fetchInformation();
  
  // async function storeInformation(){
