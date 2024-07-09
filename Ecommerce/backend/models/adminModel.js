@@ -20,6 +20,6 @@ const adminSchema=new Schema({
     role:{
         type:String,
         default:'admin'
-    }
+    },
 })
 module.exports=model('admins',adminSchema)
