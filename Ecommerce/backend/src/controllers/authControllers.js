@@ -3,10 +3,10 @@ const {responseReturn} = require("../utilities/response");
 class authControllers{
     admin_login = async (req,res)=>{
         const {email,password}=req.body
-
         try{
+            console.log('Try Check Credentials')
             const admin = await adminModel.findOne({email}).select('+password')
-            //console.log(admin)
+            console.log(admin)
             if(admin){
 
             }else{
