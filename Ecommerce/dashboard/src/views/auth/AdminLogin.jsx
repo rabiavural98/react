@@ -1,6 +1,7 @@
 ﻿import React, {useState} from 'react';
 import {useDispatch} from "react-redux";
 import {admin_login} from "../../store/Reducers/authReducer";
+import TestApiComponent from "../../components/TestApiComponent";
 
 const AdminLogin = () => {
     const dispatch=useDispatch()
@@ -31,22 +32,21 @@ const AdminLogin = () => {
                     <form onSubmit={submit}>
                         <div className='flex flex-col w-full gap-1 mb-3'>
                             <label htmlFor="email">Email</label>
-                            <input  onChange={inputHandle} value={state.email} className='px-3 py-2 outline-none border 
-        border-slate-400 bg-transparent rounded-md' type="email"
+                            <input  onChange={inputHandle} value={state.email} className='px-3 py-2 outline-none border border-slate-400 bg-transparent rounded-md' type="email"
                                     name='email' placeholder='Email' id='email' required/>
                         </div>
                         <div className='flex flex-col w-full gap-1 mb-3'>
                             <label htmlFor="password">Password</label>
-                            <input  onChange={inputHandle} value={state.password} className='px-3 py-2 outline-none border 
-        border-slate-400 bg-transparent rounded-md' type="password"
+                            <input  onChange={inputHandle} value={state.password} className='px-3 py-2 outline-none border border-slate-400 bg-transparent rounded-md' type="password"
                                     name='password' placeholder='Password' id='password' required/>
                         </div>
 
-                        <button className='bg-slate-800 w-full hover:shadow-blue-300/
-               hover:shadow-lg text-white rounded-md px-7 py- mb-3'>Login
+                        <button className='bg-slate-800 w-full hover:shadow-blue-300/hover:shadow-lg text-white rounded-md px-7 py- mb-3'>
+                            Login
                         </button>
-
                     </form>
+                    <p> Test Data Base Connection </p>
+                    <TestApiComponent />
                 </div>
             </div>
         </div>
