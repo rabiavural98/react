@@ -4,7 +4,7 @@ class AuthControllers{
         const {email,password}=req.body
         try{
             const admin=await adminModel.findOne({email}).select('+password')
-            console.log(admin)
+           console.log(admin)
         }catch(error){
         }
     }

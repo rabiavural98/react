@@ -2,9 +2,10 @@
 const app=express()
 require('dotenv').config()
 const cors=require('cors')
-const bodyParser = require("body-parser");
-const cookieParser = require("cookie-parser");
+const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
 const {dbConnect} = require("./utiles/db");
+
 
 app.use(cors({
     origin:['http://localhost:3000'],
