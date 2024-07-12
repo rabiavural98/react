@@ -8,7 +8,7 @@ export const admin_login=createAsyncThunk(
            const {data}=await api.post('/admin-login',info,{withCredentials:false})
            console.log(data)
         }catch(error){
-            
+           console.log(error.response.data) 
         }
     }
 )
@@ -22,8 +22,12 @@ export  const authReducer=createSlice({
     },
     reducers:{
     },
-    extraReducers: ()=>{
-        
+    extraReducers: (builder)=> {
+        builder
+        .addCase(admin_login.pending, (state, {payload}) => {
+       state.loader=true;
+       
+        })
     }
 })
 export default authReducer.reducer

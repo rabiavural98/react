@@ -1,10 +1,11 @@
 ﻿import React, {useState} from 'react';
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {admin_login} from "../../store/Reducers/authReducer";
 import TestApiComponent from "../../components/TestApiComponent";
-
+import {PropagateLoader} from "react-spinners";
 const AdminLogin = () => {
     const dispatch=useDispatch()
+    const {loader} =useSelector(state=>state.auth)
     const [state,setState]= useState({
         email:"",
         password:""
@@ -20,6 +21,7 @@ const AdminLogin = () => {
         dispatch(admin_login(state))
         //console.log(state)
     }
+        
     return (
         <div className='min-w-screen min-h-screen bg-[#cdcae9] flex justify-center items-center'>
             <div className='w-[350px] text-[#ffffff] p-2'>
@@ -41,8 +43,11 @@ const AdminLogin = () => {
                                     name='password' placeholder='Password' id='password' required/>
                         </div>
 
-                        <button className='bg-slate-800 w-full hover:shadow-blue-300/hover:shadow-lg text-white rounded-md px-7 py- mb-3'>
-                            Login
+                        <button disabled={loader ? true : false} className='bg-slate-800 w-full hover:shadow-blue-300/hover:shadow-lg text-white rounded-md px-7 py- mb-3'>
+                            {
+loader ? <PropagateLoader /> : 'Login'
+                            }
+                            
                         </button>
                     </form>
                     <p> Test Data Base Connection </p>
