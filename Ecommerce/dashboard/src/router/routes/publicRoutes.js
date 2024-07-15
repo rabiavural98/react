@@ -1,5 +1,5 @@
 import {lazy} from "react";
-import { Navigate } from "react-router-dom";
+//import { Navigate } from "react-router-dom";
 const Login=lazy(()=>import( '../../views/auth/Login'))
 const Register=lazy(()=>import('../../views/auth/Register'));
 const AdminLogin=lazy(()=>import('../../views/auth/AdminLogin'));
@@ -13,10 +13,10 @@ const publicRoutes=[
         path:'/register',
         element:<Register/>
     },
-    {
-        path:'/',
-        element:<Navigate to="/register" />
-    },
+    // {
+    //     path:'/',
+    //     element:<Navigate to="/" />
+    // },
     {
         path:'/admin/login',
         element:<AdminLogin/>
