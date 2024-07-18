@@ -1,6 +1,7 @@
 ﻿import React, {useState} from 'react';
 import {LuArrowDownSquare} from "react-icons/lu";
 import {Link} from "react-router-dom";
+import Pagination from "../Pagination";
 
 const Orders = () => {
     const [currentPage,setCurrentPage] = useState(1)
@@ -182,15 +183,25 @@ const Orders = () => {
                                 <div className='py-3 w-[18%] font-medium'>Pending</div>
                                 <div className='py-3 w-[18%] font-medium'>Pending</div>
                             </div>
-
-
                         </div>
                     </div>
-
-
                 </div>
 
-
+                
+                <div className='w-full flex justify-end mt-4 bottom-4 right-4' >
+                    
+           
+             <Pagination
+             pageNumber={currentPage}
+             setPageNumber={setCurrentPage}
+             totalItem={50}
+             parPage={parPage}
+             showItem={3}
+             />
+                </div>   
+            
+                
+                
             </div>
         </div>
     );
