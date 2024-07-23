@@ -62,11 +62,11 @@ export const allNav=[
         role:'admin',
         path:'/admin/dashboard/chat-seller'
     },
-    {
-        id:9,
-        title:'Live Chat',
-        icon:<IoIosChatbubbles />,
-        role:'admin',
-        path:'/admin/dashboard/chat-seller'
-    },
+    // {
+    //     id:9,
+    //     title:'Logout',
+    //     icon:<IoIosChatbubbles />,
+    //     role:'admin',
+    //     path:'/admin/dashboard/logout'
+    // },
 ]
