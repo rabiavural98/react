@@ -2,8 +2,8 @@
 import {Link} from "react-router-dom";
 import Pagination from "../Pagination";
 import {FaEdit, FaImage, FaTrash} from "react-icons/fa";
-//import {BsImage} from "react-icons/bs";
 import {IoMdCloseCircle} from "react-icons/io";
+//import {BsImage} from "react-icons/bs";
 
 const Category = () => {
     const [currentPage,setCurrentPage] = useState(1)
