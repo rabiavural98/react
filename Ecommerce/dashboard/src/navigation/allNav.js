@@ -127,4 +127,12 @@ export const allNav=[
     //     role:'admin',
     //     path:'/admin/dashboard/logout'
     // },
+
+    {
+        id:17,
+        title:'Profile',
+        icon:<AiOutlineDashboard />,
+        role:'seller',
+        path:'/seller/dashboard/profile'
+    },
 ]
