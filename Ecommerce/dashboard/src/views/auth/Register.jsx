@@ -2,9 +2,16 @@
 import {Link} from  'react-router-dom'
 import { FaGoogle } from "react-icons/fa";
 import { FaFacebook } from "react-icons/fa";
-
-
+import {PropagateLoader} from "react-spinners";
+import {useSelector} from "react-redux";
+import {overrideStyle} from "../../utils/utils";
+import {useDispatch} from "react-redux";
+import {seller_register} from "../../store/Reducers/authReducer";
 const Register = () => {
+    
+    const dispatch=useDispatch()
+    
+    const {loader}=useSelector(state=>state.auth)
     
     const [state,setState]= useState({
         name:"",
@@ -19,9 +26,10 @@ const Register = () => {
     }
     const submit = (e)=>{
        e.preventDefault()
-       console.log(state) 
+       dispatch(seller_register(state))
     }
     
+
     return (
         <div className='min-w-screen min-h-screen bg-[#cdcae9] flex justify-center items-center'>
    <div className='w-[350px] text-[#ffffff] p-2'>
@@ -53,16 +61,22 @@ const Register = () => {
                           type="checkbox" name="checkbox" id="checkbox"/>
                    <label htmlFor="checkbox"> I agree to privacy policy & treams </label>
                </div>
-               <button className='bg-slate-800 w-full hover:shadow-blue-300/
-               hover:shadow-lg text-white rounded-md px-7 py- mb-3'>Sign Up
+               
+               <button disabled={loader ? true : false}
+                       className='bg-slate-800 w-full hover:shadow-blue-300/hover:shadow-lg text-white rounded-md px-7 py- mb-3'>
+                   {
+                       loader ? <PropagateLoader color='#fff' cssOverride={overrideStyle}/> : 'Sign Up'
+                   }
+
                </button>
+               
                <div className='flex items-center mb-3 gap-3 justify-center'>
                    <p>Already Have an account ? <Link className='font-bold' to="/login">Sign In</Link></p>
                </div>
                <div className='w-full flex justify-center items-center mb-3'>
-               <div className='w-[45%] bg-slate-700 h-[1px]'></div>
-               <div className='w-[10%] flex justify-center items-center'><span className='pb-1'>Or</span>
-               </div>    
+                   <div className='w-[45%] bg-slate-700 h-[1px]'></div>
+                   <div className='w-[10%] flex justify-center items-center'><span className='pb-1'>Or</span>
+                   </div>
                    <div className='w-[45%] bg-slate-700 h-[1px]'></div>
                </div>
                <div className='flex justify-center items-center gap-3'>
@@ -71,18 +85,18 @@ const Register = () => {
                      justify-center cursor-pointer items-center overflow-hidden'>
                        <span><FaGoogle/></span>
                    </div>
-                       <div className='w-[135px] h-[35px] flex rounded-md
+                   <div className='w-[135px] h-[35px] flex rounded-md
                     bg-blue-700 shadow-lg hover:shadow-blue-700/50
                      justify-center cursor-pointer items-center overflow-hidden'>
-                           <span><FaFacebook/></span>
-                       </div>
+                       <span><FaFacebook/></span>
                    </div>
+               </div>
 
            </form>
        </div>
    </div>
         </div>
-);
+    );
 };
 
 export default Register;

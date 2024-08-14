@@ -1,8 +1,10 @@
 ﻿const adminModel=require('../models/adminModel')
+const sellerModel=require('../models/sellerModel')
+const {sellerCustomerModel}=require('../models/chat/sellerCustomerModel')
 const {responseReturn} = require("../utilities/response");
 const {createToken} = require("../utilities/tokenCreate");
 const bcrypt=require('bcrypt')
-class authControllers {
+class authControllers { 
     admin_login = async (req, res) => {
         const {email, password} = req.body
         try {
@@ -36,6 +38,46 @@ class authControllers {
         }
     }
     //End Method
+    
+    
+    seller_register = async (req, res) => {
+       // console.log(req.body)
+        const {email, name, password} = req.body
+   try{
+            const getUser=await sellerModel.findOne({email})
+                if(getUser){
+                    responseReturn(res,404,{error: 'Email Already Exist'})
+                }else{
+                    const seller=await sellerModel.create({
+                        name,
+                        email,
+                        password: await bcrypt.hash(password,10),
+                        method: 'menually',
+                        shopInfo:{}
+                    })
+                   // console.log(seller)
+                    await sellerCustomerModel.create({
+                        myId: seller.id
+                    })
+                    const token=await createToken({
+                        id: seller.id,
+                        role: seller.role
+                    })
+                    res.cookie('accessToken',token,{
+                        
+                        expires: new Date(Date.now()+7*24*60*60*1000)
+                    })
+                    responseReturn(res,201,{token,message: 'Register Success'})
+
+                }
+            }catch(error) { 
+       //console.log(error)
+       responseReturn(res, 500, {error: 'Internal Server Error'})
+   }
+       }
+    //End Method
+    
+    
     getUser = async (req,res)=>{
         const {id,role}=req;
         try {
