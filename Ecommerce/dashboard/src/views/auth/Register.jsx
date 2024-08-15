@@ -1,4 +1,4 @@
-﻿import React, {useState} from 'react';
+﻿import React, {useEffect, useState} from 'react';
 import {Link} from  'react-router-dom'
 import { FaGoogle } from "react-icons/fa";
 import { FaFacebook } from "react-icons/fa";
@@ -6,12 +6,13 @@ import {PropagateLoader} from "react-spinners";
 import {useSelector} from "react-redux";
 import {overrideStyle} from "../../utils/utils";
 import {useDispatch} from "react-redux";
-import {seller_register} from "../../store/Reducers/authReducer";
+import {messageClear, seller_register} from "../../store/Reducers/authReducer";
+import {toast} from "react-hot-toast";
 const Register = () => {
     
     const dispatch=useDispatch()
     
-    const {loader}=useSelector(state=>state.auth)
+    const {loader,successMessage,errorMessage}=useSelector(state=>state.auth)
     
     const [state,setState]= useState({
         name:"",
@@ -28,6 +29,21 @@ const Register = () => {
        e.preventDefault()
        dispatch(seller_register(state))
     }
+    
+    useEffect(()=> {
+        if(successMessage){
+            toast.success(successMessage)
+            dispatch(messageClear())
+        }
+        if(errorMessage) {
+            toast.error(errorMessage)
+            dispatch(messageClear())
+        }
+      
+    },[successMessage,errorMessage])
+    
+    
+    
     
 
     return (
