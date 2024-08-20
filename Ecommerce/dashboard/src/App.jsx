@@ -11,7 +11,6 @@ function App() {
     const dispatch=useDispatch()
     const {token}=useSelector(state=>state.auth)
     
-    
     const [allRoutes,setAllRoutes]=useState([...publicRoutes])
    // console.log(allRoutes)
     
@@ -25,10 +24,10 @@ function App() {
             dispatch(get_user_info())
         }
     }, [token])
-    
-    
-    // console.log(routes)
-    return <Router allRoutes={allRoutes}/>
+
+   
+    //console.log(routes)
+   return <Router allRoutes={allRoutes}/>
 }
 
 export default App;
