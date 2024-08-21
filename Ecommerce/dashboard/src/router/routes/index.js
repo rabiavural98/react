@@ -4,11 +4,11 @@ import MainLayout from "../../layout/MainLayout";
 
 export const getRoutes = () => {
     
-    //privateRoutes.map(r => {
-   // console.log(r)
-      //  r.element= <ProtectRoute route={r} > {r.element}</ProtectRoute>
-  //  })
-    
+  //   privateRoutes.map(r => {
+  //   console.log(r)
+  //  r.element= <ProtectRoute route={r} > {r.element}</ProtectRoute>
+  // })
+
     
     return {
         path:'/',

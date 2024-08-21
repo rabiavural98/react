@@ -1,6 +1,6 @@
 import {lazy} from "react";
 //const Home=lazy(()=>import( '../../views/Home'))
-const SellerDashboard=lazy(()=>import( '../../views/seller/SellerDashboard'))
+ const SellerDashboard=lazy(()=>import( '../../views/seller/SellerDashboard'))
 const AddProduct=lazy(()=>import( '../../views/seller/AddProduct'))
 const Products=lazy(()=>import( '../../views/seller/Products'))
 const DiscountProducts=lazy(()=>import( '../../views/seller/DiscountProducts'))
@@ -11,6 +11,8 @@ const SellerToCustomer=lazy(()=>import( '../../views/seller/SellerToCustomer'))
 const Profile=lazy(()=>import( '../../views/seller/Profile'))
 const EditProduct=lazy(()=>import( '../../views/seller/EditProduct'))
 const OrderDetails=lazy(()=>import( '../../views/seller/OrderDetails'))
+const Pending=lazy(()=>import( './../../views/Pending'))
+const Deactive=lazy(()=>import( './../../views/Deactive'))
 
 export const sellerRoutes = [
 //     {
@@ -23,6 +25,16 @@ export const sellerRoutes = [
         element: <SellerDashboard/>,
         role: 'seller',
         status:'active'
+    },
+    {
+        path: '/seller/account-pending',
+        element: <Pending/>,
+        ability: 'seller',
+    },
+    {
+        path: '/seller/account-deactive',
+        element: <Deactive/>,
+        ability: 'seller',
     },
     {
         path: '/seller/dashboard/add-product',
