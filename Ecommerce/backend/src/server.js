@@ -20,11 +20,16 @@ mongoose.connect('mongodb://localhost:27017/ecommerce', {
 
 // Import routes
 const testRoutes = require('./routes/testRoutes');
-const authRoutes = require('./routes/authRoutes')
+const authRoutes = require('./routes/authRoutes');
+// const categoryRoutes = require('./routes/dashboard/categoryRoutes');
+
 
 // Use routes
 app.use('/api',testRoutes);
-app.use('/api',authRoutes)
+app.use('/api',authRoutes);
+// app.use('/api',categoryRoutes)
+
+
 
 app.use(bodyParser.json())
 app.use(cookieParser())

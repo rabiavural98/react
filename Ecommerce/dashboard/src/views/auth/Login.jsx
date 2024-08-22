@@ -70,8 +70,9 @@ const Login = () => {
                             {
                                 loader ? <PropagateLoader color='#fff' cssOverride={overrideStyle}/> : 'Sıgn In'
                             }
-
                         </button>
+                        
+                        
                         <div className='flex items-center mb-3 gap-3 justify-center'>
                             <p>Don't Have an account ? <Link className='font-bold' to="/register">Sign Up</Link></p>
                         </div>

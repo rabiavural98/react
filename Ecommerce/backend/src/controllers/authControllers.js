@@ -4,10 +4,9 @@ const {sellerCustomerModel}=require('../models/chat/sellerCustomerModel')
 const {responseReturn} = require("../utilities/response");
 const {createToken} = require("../utilities/tokenCreate");
 const bcrypt=require('bcrypt')
+
+
 class authControllers { 
-    
-    
-    
     
     admin_login = async (req, res) => {
         const {email, password} = req.body
@@ -79,9 +78,6 @@ class authControllers {
         }
     }
     //End Method
-
-
-
 
 
 
