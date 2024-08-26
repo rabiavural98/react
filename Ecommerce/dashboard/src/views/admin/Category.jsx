@@ -41,10 +41,10 @@ const Category = () => {
     
     const add_category = (e) => {
       e.preventDefault()
-        dispatch(categoryAdd(state))
-     // console.log(state)
-    }
-   //const loader=false
+      dispatch(categoryAdd(state))
+    //  console.log(state)
+     }
+     // const loader=false
     
     
     return (

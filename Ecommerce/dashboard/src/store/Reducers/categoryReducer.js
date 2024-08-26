@@ -9,7 +9,8 @@ export const categoryAdd=createAsyncThunk(
             const formData = new FormData()
             formData.append('name',name)
             formData.append('image',image)
-            const {data}=await api.post('/category-add',formData,{withCredentials:false})
+            const {data}=await api.post('/category-add',formData,{withCredentials:true})
+            //withCredentials:true  (video)
             console.log(data)
             return fulfillWithValue(data)
         }catch(error){
@@ -40,14 +41,15 @@ export  const categoryReducer=createSlice({
             })
             .addCase(categoryAdd.rejected, (state, {payload}) => {
                 state.loader = false;
-                
-               if (payload) {
                 state.errorMessage = payload.error
-
-           } else {
-               state.errorMessage="An Error occurred"
-        }
-        
+                
+        //        if (payload) {
+        //         state.errorMessage = payload.error
+        //
+        //    } else {
+        //        state.errorMessage="An Error occurred"
+        // }
+        //
         
         })
             // .addCase(admin_login.fulfilled, (state, {payload}) => {
@@ -66,6 +68,7 @@ export default categoryReducer.reducer
 
 
 // if (payload) {
+//state.errorMessage = payload.error
 // } else {
 //     state.errorMessage="An Error occurred"
 // }
