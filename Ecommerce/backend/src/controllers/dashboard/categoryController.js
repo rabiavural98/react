@@ -2,13 +2,20 @@
 // const {responseReturn} = require("../../utilities/response");
 // const cloudinary = require('cloudinary').v2
 // const categoryModel = require('../../models/categoryModel')
-//    
-//    
+  
+
 class categoryController {
 add_category = async (req, res) => {
    console.log('this is working')
+
     
-   //  const form = new formidable()
+    console.log(req.body) // req parametresini kullanma örneği
+    res.send('Request received') // res parametresini kullanma örneği
+
+
+
+
+    //  const form = new formidable()
    //  form.parse(req,async(err, fields, files) => {
    //      // console.log(fields)
    //      // console.log(files)

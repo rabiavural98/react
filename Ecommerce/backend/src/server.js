@@ -2,7 +2,7 @@
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser')
-const cookieParser = require('cookie-parser')
+const cookieParser = require('cookie-parser');
 const mongoose = require('mongoose');
 const app = express();
 
@@ -22,19 +22,21 @@ mongoose.connect('mongodb://localhost:27017/ecommerce', {
 const testRoutes = require('./routes/testRoutes');
 const authRoutes = require('./routes/authRoutes');
 
-//const categoryRoutes = require('./routes/dashboard/categoryRoutes');
+const categoryRoutes = require('./routes/dashboard/categoryRoutes');
 
 
 // Use routes
 app.use('/api',testRoutes);
 app.use('/api',authRoutes);
 
-//app.use('/api',require('./routes/dashboard/categoryRoutes'))
+app.use('/api',require('./routes/dashboard/categoryRoutes'))
 
 
 
 app.use(bodyParser.json())
-app.use(cookieParser())
+app.use(cookieParser());
+
+app.use('/api', categoryRoutes);
 
 
 app.get('/',(req,res)=>res.send('My backend'))
