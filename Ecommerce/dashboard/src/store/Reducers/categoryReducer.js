@@ -11,7 +11,7 @@ export const categoryAdd=createAsyncThunk(
             formData.append('image',image)
             const {data}=await api.post('/category-add',formData,{withCredentials:false})
             //withCredentials:true  (video)
-            console.log(data)
+            //console.log(data)
             return fulfillWithValue(data)
         }catch(error){
             // console.log(error.response.data) 
@@ -52,13 +52,12 @@ export  const categoryReducer=createSlice({
 
         
         })
-            // .addCase(admin_login.fulfilled, (state, {payload}) => {
-            //     state.loader = false;
-            //     state.successMessage = payload.message
-            //     state.token = payload.token
-            //     state.role = returnRole(payload.token)
-            //
-            // })
+            .addCase(categoryAdd.fulfilled, (state, {payload}) => {
+                state.loader = false;
+                state.successMessage = payload.message
+                state.categorys = [...state.categorys, payload.category]
+
+            })
 
     }
 })
