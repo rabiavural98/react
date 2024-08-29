@@ -20,7 +20,27 @@ export const categoryAdd=createAsyncThunk(
     }
 )
 
+//End Method
 
+export const get_category=createAsyncThunk(
+    'category/get_category',
+    async({parPage,page,searchValue},{rejectWithValue,fulfillWithValue})=>{
+
+        try{
+            
+            const {data}=await api.get(`/category-get?page=${page}&&searchValue=${searchValue} && parPage=${parPage}`,{withCredentials:false})
+            //withCredentials:true  (video)
+            console.log(data)
+            return fulfillWithValue(data)
+        }catch(error){
+            // console.log(error.response.data) 
+            return rejectWithValue(error.response.data)
+        }
+    }
+)
+
+
+// End Method
 export  const categoryReducer=createSlice({
     name:'category',
     initialState:{
@@ -43,6 +63,7 @@ export  const categoryReducer=createSlice({
                 state.loader = false;
                // state.errorMessage = payload.error
                 
+                
                if (payload) {
                 state.errorMessage = payload.error
 
@@ -58,7 +79,7 @@ export  const categoryReducer=createSlice({
                 state.categorys = [...state.categorys, payload.category]
 
             })
-
+           
     }
 })
 export const {messageClear}=categoryReducer.actions
@@ -71,3 +92,6 @@ export default categoryReducer.reducer
 // } else {
 //     state.errorMessage="An Error occurred"
 // }
+
+
+   
