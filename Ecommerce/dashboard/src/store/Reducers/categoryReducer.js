@@ -30,7 +30,7 @@ export const get_category=createAsyncThunk(
             
             const {data}=await api.get(`/category-get?page=${page}&&searchValue=${searchValue}&&parPage=${parPage}`,{withCredentials:false})
             //withCredentials:true  (video)
-            console.log(data)
+           // console.log(data)
             return fulfillWithValue(data)
         }catch(error){
             // console.log(error.response.data) 
@@ -48,7 +48,7 @@ export  const categoryReducer=createSlice({
         errorMessage:'',
         loader:false,
         categorys:[],
-        //totalCategory:0
+        totalCategory:0
     },
     reducers:{
         messageClear:(state)=>{
@@ -81,10 +81,11 @@ export  const categoryReducer=createSlice({
 
             })
 
-            // .addCase(get_category.fulfilled, (state, {payload}) => {
-            //     state.categorys = payload.categorys;
-            //     state.totalCategory = payload.categorys.length;
-            // })
+            .addCase(get_category.fulfilled, (state, {payload}) => {
+                state.totalCategory = payload.totalCategory;
+                state.categorys = payload.categorys;
+
+            })
            
     }
 })
