@@ -28,7 +28,7 @@ export const get_category=createAsyncThunk(
 
         try{
             
-            const {data}=await api.get(`/category-get?page=${page}&&searchValue=${searchValue} && parPage=${parPage}`,{withCredentials:false})
+            const {data}=await api.get(`/category-get?page=${page}&&searchValue=${searchValue}&&parPage=${parPage}`,{withCredentials:false})
             //withCredentials:true  (video)
             console.log(data)
             return fulfillWithValue(data)
@@ -47,7 +47,8 @@ export  const categoryReducer=createSlice({
         successMessage:'',
         errorMessage:'',
         loader:false,
-        categorys:[]
+        categorys:[],
+        //totalCategory:0
     },
     reducers:{
         messageClear:(state)=>{
@@ -61,15 +62,15 @@ export  const categoryReducer=createSlice({
             })
             .addCase(categoryAdd.rejected, (state, {payload}) => {
                 state.loader = false;
-               // state.errorMessage = payload.error
-                
-                
-               if (payload) {
                 state.errorMessage = payload.error
-
-           } else {
-               state.errorMessage="An Error occurred"
-        }
+                
+                
+        //        if (payload) {
+        //         state.errorMessage = payload.error
+        //
+        //    } else {
+        //        state.errorMessage="An Error occurred"
+        // }
 
         
         })
@@ -79,6 +80,11 @@ export  const categoryReducer=createSlice({
                 state.categorys = [...state.categorys, payload.category]
 
             })
+
+            // .addCase(get_category.fulfilled, (state, {payload}) => {
+            //     state.categorys = payload.categorys;
+            //     state.totalCategory = payload.categorys.length;
+            // })
            
     }
 })
