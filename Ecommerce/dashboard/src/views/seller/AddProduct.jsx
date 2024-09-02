@@ -1,35 +1,48 @@
-﻿import React, {useState} from 'react';
+﻿import React, {useEffect, useState} from 'react';
 import {Link} from "react-router-dom";
 import {IoMdCloseCircle, IoMdImages} from "react-icons/io";
+import {useDispatch, useSelector} from "react-redux";
+import {get_category} from "../../store/Reducers/categoryReducer";
+import {add_product} from "../../store/Reducers/productReducer";
 
 const AddProduct = () => {
+    const dispatch=useDispatch()
+    const { categorys } = useSelector(state => state.category)
+
+    useEffect(() => {
+        dispatch(get_category({
+            searchValue:'',
+            parPage:"",
+            page: ""
+        }))
+    }, [])
     
-    const categorys=[
-        {
-            id:1,
-            name:'Sports'
-        },
-        {
-            id:2,
-            name:'Tshirt'
-        },
-        {
-            id:3,
-            name:'Mobile'
-        },
-        {
-            id:4,
-            name:'Computer'
-        },
-        {
-            id:5,
-            name:'Watch'
-        },
-        {
-            id:6,
-            name:'Pant'
-        },
-    ]
+    // const categorys=[
+    //     {
+    //         id:1,
+    //         name:'Sports'
+    //     },
+    //     {
+    //         id:2,
+    //         name:'Tshirt'
+    //     },
+    //     {
+    //         id:3,
+    //         name:'Mobile'
+    //     },
+    //     {
+    //         id:4,
+    //         name:'Computer'
+    //     },
+    //     {
+    //         id:5,
+    //         name:'Watch'
+    //     },
+    //     {
+    //         id:6,
+    //         name:'Pant'
+    //     },
+    // ]
     
     const [state, setState] = useState({
         name:"",
@@ -50,7 +63,7 @@ const AddProduct = () => {
     
     const [cateShow,setCateShow]=useState(false)
     const [category,setCategory]=useState('')
-    const [allCategory,setAllCategory]=useState(categorys)
+    const [allCategory,setAllCategory]=useState([])
     const[searchValue,setSearchValue]=useState('')
     
   //  const  ariyan='sfjdhjdhDSKGJKDGFD'
@@ -98,6 +111,31 @@ const AddProduct = () => {
         setImages(filterImage)
         setImageShow(filterImageUrl)
     }
+    
+    const add=(e)=> {
+      e.preventDefault()
+        const formData=new FormData()
+        formData.append('name',state.name)
+        formData.append('description',state.description)
+        formData.append('price',state.price)
+        formData.append('stock',state.stock)
+        formData.append('discount',state.discount)
+        formData.append('brand',state.brand)
+        formData.append('shopName','EasyShop')
+        formData.append('name',state.name)
+        formData.append('category',category)
+        
+        for(let i=0;i < images.length;i++){
+            formData.append('images',images[i])
+        }
+        dispatch(add_product(formData))
+        
+    }
+    
+    useEffect(() => {
+        setAllCategory(categorys)
+    },[categorys])
+    
    // console.log(images)
    // console.log(imageShow)
 
@@ -115,7 +153,7 @@ const AddProduct = () => {
                
                
                <div>
-                   <form>
+                   <form onSubmit={add }>
                        <div className='flex flex-col mb-3 md:flex-row gap-4 w-full
                        text-[#d0d2d6]'>
                            <div className='flex flex-col w-full gap-1'>

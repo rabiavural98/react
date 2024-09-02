@@ -61,8 +61,16 @@ add_category = async (req, res) => {
 get_category = async (req, res) => {
   //  console.log(req.query)
     const {page,searchValue,parPage}=req.query
-    const skipPage=parseInt(parPage)*(parseInt(page)-1)
+  //const skipPage=parseInt(parPage)*(parseInt(page)-1)
+   
+   
+   
     try{
+        let skipPage=''
+        if(parPage && page){
+           skipPage=parseInt(parPage)*(parseInt(page)-1)
+        }
+        
         if(searchValue && page && parPage){
             const categorys = await categoryModel.find({
                 $text:{ $search: searchValue }}).skip(skipPage).limit(parPage).sort({createdAt: -1})
@@ -84,6 +92,7 @@ get_category = async (req, res) => {
             responseReturn(res,200,{categorys,totalCategory})
 
         }
+        
     }catch(error){
         console.log(error.message)
     }
