@@ -122,12 +122,13 @@ const AddProduct = () => {
         formData.append('discount',state.discount)
         formData.append('brand',state.brand)
         formData.append('shopName','EasyShop')
-        formData.append('name',state.name)
+      //  formData.append('name',state.name)
         formData.append('category',category)
         
         for(let i=0;i < images.length;i++){
             formData.append('images',images[i])
         }
+        console.log(state)
         dispatch(add_product(formData))
         
     }

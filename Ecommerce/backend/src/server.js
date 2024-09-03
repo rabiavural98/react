@@ -23,6 +23,7 @@ const testRoutes = require('./routes/testRoutes');
 const authRoutes = require('./routes/authRoutes');
 
 const categoryRoutes = require('./routes/dashboard/categoryRoutes');
+const productRoutes = require('./routes/dashboard/productRoutes');
 
 
 // Use routes
@@ -30,6 +31,7 @@ app.use('/api',testRoutes);
 app.use('/api',authRoutes);
 
 app.use('/api',require('./routes/dashboard/categoryRoutes'))
+app.use('/api',require('./routes/dashboard/productRoutes'))
 
 
 
@@ -37,6 +39,7 @@ app.use(bodyParser.json())
 app.use(cookieParser());
 
 app.use('/api', categoryRoutes);
+app.use('/api', productRoutes);
 
 
 app.get('/',(req,res)=>res.send('My backend'))
