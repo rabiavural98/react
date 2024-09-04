@@ -5,8 +5,8 @@ const productModel = require('../../models/productModel')
 class productController{
     
     add_product=async(req,res)=> {
-        const {id} = req;
-       // console.log('product ok')
+       const {id} = req;
+        // console.log('product ok')
         const form = new Formidable({multiples:true})
         
         form.parse(req,async(err,field,files)=> {
@@ -33,10 +33,10 @@ class productController{
                     const result = await cloudinary.uploader.upload(images[i].filepath,{folder:'products'});
                     allImageUrl = [...allImageUrl,result.url]
                 }
-                
+
                 await productModel.create({
                    
-                   sellerId: id,
+                   sellerId:id,
                     name,
                     slug,
                     shopName,
@@ -48,10 +48,12 @@ class productController{
                     images:allImageUrl,
                     brand:brand.trim()
                 })
-            responseReturn(res,201,{ message:'Product Added Successfully'})
+
+                responseReturn(res,201,{ message:'Product Added Successfully'})
 
             }catch(error){
-            responseReturn(res,500,{error : error.message})
+
+                responseReturn(res,500,{error : error.message})
 
             }
 
@@ -60,11 +62,6 @@ class productController{
     }
     
     /// end method
-    
-    
-    
-    
-    
     
     
 }

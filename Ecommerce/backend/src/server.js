@@ -10,6 +10,7 @@ const app = express();
 app.use(express.json()); // For parsing application/json
 app.use(cors()); // Enable CORS if needed
 
+
 // Connect to MongoDB
 mongoose.connect('mongodb://localhost:27017/ecommerce', {
     useNewUrlParser: true,

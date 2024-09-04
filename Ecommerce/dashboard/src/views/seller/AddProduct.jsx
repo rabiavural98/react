@@ -6,7 +6,7 @@ import {get_category} from "../../store/Reducers/categoryReducer";
 import {add_product} from "../../store/Reducers/productReducer";
 
 const AddProduct = () => {
-    const dispatch=useDispatch()
+    const dispatch = useDispatch()
     const { categorys } = useSelector(state => state.category)
 
     useEffect(() => {
@@ -122,7 +122,6 @@ const AddProduct = () => {
         formData.append('discount',state.discount)
         formData.append('brand',state.brand)
         formData.append('shopName','EasyShop')
-      //  formData.append('name',state.name)
         formData.append('category',category)
         
         for(let i=0;i < images.length;i++){
