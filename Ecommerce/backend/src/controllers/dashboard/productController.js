@@ -53,7 +53,7 @@ class productController{
 
             }catch(error){
 
-                responseReturn(res,500,{error : error.message})
+             responseReturn(res,500,{error : error.message})
 
             }
 

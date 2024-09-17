@@ -9,8 +9,8 @@ export const add_product=createAsyncThunk(
             // const formData = new FormData()
             // formData.append('name',name)
             // formData.append('image',image)
-            const {data}=await api.post('/product-add',product,{withCredentials:false})
-            //withCredentials:true  (video)
+            const {data}=await api.post('/product-add',{withCredentials:false})
+            //product, withCredentials:true  (video)
             console.log(data)
             return fulfillWithValue(data)
         }catch(error){
@@ -51,7 +51,7 @@ export  const productReducer=createSlice({
         totalProduct:0
     },
     reducers:{
-        messageClear:(state)=>{
+        messageClear:(state,_)=>{
             state.errorMessage=""
         }
     },

@@ -3,12 +3,17 @@ import {Link} from "react-router-dom";
 import {IoMdCloseCircle, IoMdImages} from "react-icons/io";
 import {useDispatch, useSelector} from "react-redux";
 import {get_category} from "../../store/Reducers/categoryReducer";
-import {add_product} from "../../store/Reducers/productReducer";
+import {add_product,messageClear} from "../../store/Reducers/productReducer";
+import {PropagateLoader} from "react-spinners";
+import {overrideStyle} from "../../utils/utils";
+import {toast} from "react-hot-toast";
 
 const AddProduct = () => {
     const dispatch = useDispatch()
     const { categorys } = useSelector(state => state.category)
+    const { loader,successMessage,errorMessage} = useSelector(state => state.product)
 
+    
     useEffect(() => {
         dispatch(get_category({
             searchValue:'',
@@ -60,7 +65,10 @@ const AddProduct = () => {
         
         })
     }
-    
+
+    const [image, setImage] = useState(null);
+
+
     const [cateShow,setCateShow]=useState(false)
     const [category,setCategory]=useState('')
     const [allCategory,setAllCategory]=useState([])
@@ -93,7 +101,36 @@ const AddProduct = () => {
             setImageShow([...imageShow, ...imageUrl])
         }
 
-    } 
+    }
+
+
+    useEffect(()=> {
+        if(successMessage) {
+            toast.success(successMessage)
+            dispatch(messageClear())
+            setState({
+                name:"",
+                description:"",
+                discount:"",
+                price:"",
+                brand:"",
+                stock:""
+            })
+            setImageShow([])
+            setImage([])
+            setCategory('')
+        }
+        if(errorMessage) {
+            toast.error(errorMessage)
+            dispatch(messageClear())
+        }
+
+    },[successMessage,errorMessage])
+    
+    
+    
+    
+    
     const changeImage=(img,index)=> {
         if(img){
             let tempUrl=imageShow
@@ -300,8 +337,12 @@ const AddProduct = () => {
                        </div>
 
                        <div className='flex'>
-                           <button className='bg-red-500 hover:shadow-red-500/40
-                                   hover:shadow-md text-white rounded-md px-7 py-2 my-2'>Add Product
+                           <button disabled={loader ? true : false}
+                                   className='bg-red-800 w-[300px] hover:shadow-red-300/50 hover:shadow-lg text-white rounded-md px-7 py- mb-3'>
+                               {
+                                   loader ?
+                                       <PropagateLoader color='#fff' cssOverride={overrideStyle}/> : 'Add Category'
+                               }
                            </button>
                        </div>
 
