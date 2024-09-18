@@ -4,6 +4,7 @@ const productController=require('../../controllers/dashboard/productController')
 const {authMiddleware} = require('../../middlewares/authMiddleware')
 
 router.post('/product-add',productController.add_product)
+router.get('/products-get',productController.products_get)
 
 //router.post('/category-add',productController.add_category)
 //router.get('/category-get',categoryController.get_category)

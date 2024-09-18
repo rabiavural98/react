@@ -36,7 +36,7 @@ add_category = async (req, res) => {
                 const category= await categoryModel.create({
                     name,
                     slug,
-                    image:result.url
+                    image: result.url
                 })
                     responseReturn(res,201,{category,message:'Category Added Successfully'})
         
