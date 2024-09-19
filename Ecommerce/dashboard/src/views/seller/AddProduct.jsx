@@ -17,7 +17,7 @@ const AddProduct = () => {
     useEffect(() => {
         dispatch(get_category({
             searchValue:'',
-            parPage:"",
+            parPage:'',
             page: ""
         }))
     }, [])
@@ -114,7 +114,9 @@ const AddProduct = () => {
                 discount:"",
                 price:"",
                 brand:"",
-                stock:""
+                stock:"",
+
+
             })
             setImageShow([])
             setImage([])
@@ -161,6 +163,8 @@ const AddProduct = () => {
         formData.append('shopName','EasyShop')
         formData.append('category',category)
         
+
+
         for(let i=0;i < images.length;i++){
             formData.append('images',images[i])
         }
@@ -190,7 +194,7 @@ const AddProduct = () => {
                
                
                <div>
-                   <form onSubmit={add }>
+                   <form onSubmit={add}>
                        <div className='flex flex-col mb-3 md:flex-row gap-4 w-full
                        text-[#d0d2d6]'>
                            <div className='flex flex-col w-full gap-1'>
@@ -297,8 +301,8 @@ const AddProduct = () => {
 
                            </div>
                        </div>
-
-
+                       
+                       
                        <div className='flex flex-col w-full gap-1 mb-5'>
                            <label htmlFor="description" className='text-[#d0d2d6]'>Description</label>
                            <textarea className='px-4 py-2 focus:border-indigo-500

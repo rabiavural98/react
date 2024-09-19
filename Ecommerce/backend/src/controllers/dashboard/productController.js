@@ -2,7 +2,7 @@
 const {responseReturn} = require("../../utilities/response");
 const cloudinary = require('cloudinary').v2
 const productModel = require('../../models/productModel')
-const categoryModel = require("../../models/categoryModel");
+//const categoryModel = require("../../models/categoryModel");
 
 class productController{
 
@@ -19,7 +19,8 @@ add_product=async(req,res)=> {
             let {name,category,description,stock,price,discount,shopName,brand} = field;
             const {images} = files;
             name = name.trim()
-            const slug= name.split('').join('-')
+            const slug= name.split(' ').join('-')
+            
 
             cloudinary.config({
                 cloud_name: process.env.cloud_name,
@@ -104,4 +105,4 @@ add_product=async(req,res)=> {
     
     
 }
-module.exports=new productController()
+module.exports = new productController()

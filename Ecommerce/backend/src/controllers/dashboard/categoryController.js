@@ -1,22 +1,24 @@
 ﻿//const formidable = require("formidable")
 const Formidable=require('formidable').IncomingForm;
-const {responseReturn} = require("../../utilities/response");
+const {responseReturn} = require("../../utilities/response")
 const cloudinary = require('cloudinary').v2
 const categoryModel = require('../../models/categoryModel')
  
 
 class categoryController {
-add_category = async (req, res) => {
-    //console.log('this is working')
-    const form = new Formidable()
-    form.parse(req, async (err, fields, files) => {
-        // console.log(fields)
-        // console.log(files)
-        
+    add_category = async (req, res) => {
+        //console.log('this is working')
+        const form = new Formidable({multiples: true})
+
+        form.parse(req, async (err, field, files) => {
+
+            // console.log(field)
+            // console.log(files.images[0])
+            
         if(err){
             responseReturn(res,404,{error:'something went wrong'})
         }else{
-            let {name} = fields
+            let {name} = field
             let {image} = files
             name= name.trim()
             const slug=name.split('').join('-')
@@ -59,49 +61,49 @@ add_category = async (req, res) => {
     //end method
     
 get_category = async (req, res) => {
-  //  console.log(req.query)
-    const {page,searchValue,parPage}=req.query
-  //const skipPage=parseInt(parPage)*(parseInt(page)-1)
-   
-   
-   
-    try{
-        let skipPage=''
-        if(parPage && page){
-           skipPage=parseInt(parPage)*(parseInt(page)-1)
+    //  console.log(req.query)
+    const {page, searchValue, parPage} = req.query
+    //const skipPage=parseInt(parPage)*(parseInt(page)-1)
+
+
+    try {
+        let skipPage = ''
+        if (parPage && page) {
+            skipPage = parseInt(parPage) * (parseInt(page) - 1)
         }
-        
-        if(searchValue && page && parPage){
+
+        if (searchValue && page && parPage) {
             const categorys = await categoryModel.find({
-                $text:{ $search: searchValue }}).skip(skipPage).limit(parPage).sort({createdAt: -1})
-           const totalCategory= await categoryModel.find({
-                $text: {$search: searchValue}}).countDocuments()
-            responseReturn(res,200,{categorys,totalCategory}) 
-        }
-        else if(searchValue===''&& page && parPage) {
+                $text: {$search: searchValue}
+            }).skip(skipPage).limit(parPage).sort({createdAt: -1})
+            const totalCategory = await categoryModel.find({
+                $text: {$search: searchValue}
+            }).countDocuments()
+            responseReturn(res, 200, {categorys, totalCategory})
+        } else if (searchValue === '' && page && parPage) {
 
             const categorys = await categoryModel.find({}).skip(skipPage).limit(parPage).sort({createdAt: -1})
-            const totalCategory= await categoryModel.find({}).countDocuments()
-            responseReturn(res,200,{categorys,totalCategory})
-        }
-        
-        else{
-            
-            const categorys= await categoryModel.find({}).sort({createdAt: -1})
-            const totalCategory= await categoryModel.find({}).countDocuments()
-            responseReturn(res,200,{categorys,totalCategory})
+            const totalCategory = await categoryModel.find({}).countDocuments()
+            responseReturn(res, 200, {categorys, totalCategory})
+        } else {
+
+            const categorys = await categoryModel.find({}).sort({createdAt: -1})
+            const totalCategory = await categoryModel.find({}).countDocuments()
+            responseReturn(res, 200, {categorys, totalCategory})
 
         }
-        
-    }catch(error){
+
+    } catch (error) {
         console.log(error.message)
     }
-     }
+}  
      //end method
+
 
 }
 
-module.exports=new categoryController()
+
+module.exports = new categoryController()
 
    
     
