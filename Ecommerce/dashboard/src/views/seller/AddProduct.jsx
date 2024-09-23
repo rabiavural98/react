@@ -13,7 +13,7 @@ const AddProduct = () => {
     const { categorys } = useSelector(state => state.category)
     const { loader,successMessage,errorMessage} = useSelector(state => state.product)
 
-    
+
     useEffect(() => {
         dispatch(get_category({
             searchValue:'',
@@ -48,7 +48,11 @@ const AddProduct = () => {
     //         name:'Pant'
     //     },
     // ]
+
+    const [image, setImage] = useState(null);
+
     
+
     const [state, setState] = useState({
         name:"",
         description:"",
@@ -66,7 +70,6 @@ const AddProduct = () => {
         })
     }
 
-    const [image, setImage] = useState(null);
 
 
     const [cateShow,setCateShow]=useState(false)
@@ -168,7 +171,7 @@ const AddProduct = () => {
         for(let i=0;i < images.length;i++){
             formData.append('images',images[i])
         }
-        console.log(state)
+        //console.log(state)
         dispatch(add_product(formData))
         
     }
@@ -183,6 +186,7 @@ const AddProduct = () => {
 // console.log(e.target.files)
     
     return (
+        
         <div className='px-2 lg:px-7 pt-5'>
            <div className='w-full p-4 bg-[#6a5fdf] rounded-md'>
                <div className='flex justify-between items-center pb-4'>
@@ -345,7 +349,7 @@ const AddProduct = () => {
                                    className='bg-red-800 w-[300px] hover:shadow-red-300/50 hover:shadow-lg text-white rounded-md px-7 py- mb-3'>
                                {
                                    loader ?
-                                       <PropagateLoader color='#fff' cssOverride={overrideStyle}/> : 'Add Category'
+                                       <PropagateLoader color='#fff' cssOverride={overrideStyle}/> : 'Add Product'
                                }
                            </button>
                        </div>

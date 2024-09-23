@@ -1,8 +1,9 @@
 ﻿import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import api from "../../api/api";
 
+
 export const add_product=createAsyncThunk(
-    'product/add_product',
+'product/add_product',
     async(product,{rejectWithValue,fulfillWithValue})=>{
 
         try{
@@ -77,7 +78,6 @@ export const productReducer=createSlice({
             .addCase(add_product.fulfilled, (state, {payload}) => {
                 state.loader = false;
                 state.successMessage = payload.message
-                state.products = [...state.products, payload.products]
 
             })
 
