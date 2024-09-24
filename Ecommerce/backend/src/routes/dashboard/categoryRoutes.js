@@ -1,7 +1,6 @@
-﻿//const {authMiddleware} = require("../../middlewares/authMiddleware");
-const router = require('express').Router()
+﻿const router = require('express').Router()
 const categoryController=require('../../controllers/dashboard/categoryController')
-const {authMiddleware} = require("../../middlewares/authMiddleware");
+//const {authMiddleware} = require("../../middlewares/authMiddleware");
 
 
 

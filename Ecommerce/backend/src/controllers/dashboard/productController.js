@@ -8,7 +8,8 @@ class productController{
 
 add_product=async(req,res)=> {
        const {id} = req;
-        // console.log('product ok')
+       
+    // console.log('product ok')
         const form = new Formidable({multiples:true})
         
         form.parse(req,async(err,field,files)=> {

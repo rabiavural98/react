@@ -1,9 +1,10 @@
-﻿import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
+﻿
+import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import api from "../../api/api";
 
 
 export const add_product=createAsyncThunk(
-'product/add_product',
+    'product/add_product',
     async(product,{rejectWithValue,fulfillWithValue})=>{
 
         try{
@@ -69,7 +70,7 @@ export const productReducer=createSlice({
                 //        if (payload) {
                 //         state.errorMessage = payload.error
                 //
-                //    } else {
+                //    } else { 
                 //        state.errorMessage="An Error occurred"
                 // }
 
@@ -99,6 +100,3 @@ export default productReducer.reducer
 // } else {
 //     state.errorMessage="An Error occurred"
 // }
-
-
-   

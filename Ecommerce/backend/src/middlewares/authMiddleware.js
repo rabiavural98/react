@@ -9,6 +9,8 @@ const {accessToken}=req.cookies;
             const deCodeToken=await jwt.verify(accessToken,process.env.SECRET)
             req.role=deCodeToken.role
             req.id=deCodeToken.id
+
+
             next()
         }catch(error){
             return res.status(409).json({error:'Please Login'})
