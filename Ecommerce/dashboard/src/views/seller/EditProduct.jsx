@@ -1,35 +1,59 @@
 ﻿import React, {useEffect, useState} from 'react';
-import {Link} from "react-router-dom";
+import {Link,useParams} from "react-router-dom";
 import {IoMdCloseCircle, IoMdImages} from "react-icons/io";
+import {get_category} from "../../store/Reducers/categoryReducer";
+import {useDispatch, useSelector} from "react-redux";
+import {get_product} from "../../store/Reducers/productReducer";
 
 const EditProduct = () => {
 
-    const categorys=[
-        {
-            id:1,
-            name:'Sports'
-        },
-        {
-            id:2,
-            name:'Tshirt'
-        },
-        {
-            id:3,
-            name:'Mobile'
-        },
-        {
-            id:4,
-            name:'Computer'
-        },
-        {
-            id:5,
-            name:'Watch'
-        },
-        {
-            id:6,
-            name:'Pant'
-        },
-    ]
+    const {productId}=useParams()
+    //console.log(productId)
+
+
+    const dispatch = useDispatch()
+    const { categorys } = useSelector(state => state.category)
+
+    useEffect(() => {
+        dispatch(get_category({
+            searchValue:'',
+            parPage:'',
+            page: ""
+        }))
+    }, [])
+
+
+    useEffect(() => {
+        dispatch(get_product(productId))
+    }, [productId])
+    
+    
+    // const categorys=[
+    //     {
+    //         id:1,
+    //         name:'Sports'
+    //     },
+    //     {
+    //         id:2,
+    //         name:'Tshirt'
+    //     },
+    //     {
+    //         id:3,
+    //         name:'Mobile'
+    //     },
+    //     {
+    //         id:4,
+    //         name:'Computer'
+    //     },
+    //     {
+    //         id:5,
+    //         name:'Watch'
+    //     },
+    //     {
+    //         id:6,
+    //         name:'Pant'
+    //     },
+    // ]
 
     const [state, setState] = useState({
         name:"",
