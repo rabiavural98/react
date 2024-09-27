@@ -122,7 +122,7 @@ const AddProduct = () => {
 
             })
             setImageShow([])
-            setImage([])
+            setImages([])
             setCategory('')
         }
         if(errorMessage) {
