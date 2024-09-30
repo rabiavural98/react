@@ -150,17 +150,15 @@ const EditProduct = () => {
         if(successMessage) {
             toast.success(successMessage)
             dispatch(messageClear())
-            setState({
-                name:"",
-                description:"",
-                discount:"",
-                price:"",
-                brand:"",
-                stock:"",
-
-
-            })
-            setCategory('')
+            // setState({
+            //     name:"",
+            //     description:"",
+            //     discount:"",
+            //     price:"",
+            //     brand:"",
+            //     stock:"",
+            // })
+            // setCategory('')
             
         }
         if(errorMessage) {

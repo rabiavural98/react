@@ -9,7 +9,7 @@ const app = express();
 // Middleware
 app.use(express.json()); // For parsing application/json
 app.use(cors()); // Enable CORS if needed
-
+app.use(cookieParser())
 
 // Connect to MongoDB
 mongoose.connect('mongodb://localhost:27017/ecommerce', {
