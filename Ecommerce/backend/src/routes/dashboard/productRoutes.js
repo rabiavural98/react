@@ -9,6 +9,9 @@ router.get('/product-get/:productId',authMiddleware,productController.product_ge
 //router.post('/product-update',authMiddleware,productController.product_update)
 
 
+
+
+
 //router.post('/category-add',productController.add_category)
 //router.get('/category-get',categoryController.get_category)
 

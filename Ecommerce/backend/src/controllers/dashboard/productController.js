@@ -5,7 +5,7 @@ const productModel = require('../../models/productModel')
 //const categoryModel = require("../../models/categoryModel");
 
 class productController {
-
+    
     add_product = async (req, res) => {
         const {id} = req;
 
