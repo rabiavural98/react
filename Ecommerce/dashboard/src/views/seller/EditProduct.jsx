@@ -1,9 +1,9 @@
 ﻿import React, {useEffect, useState} from 'react';
 import {Link,useParams} from "react-router-dom";
-import {IoMdCloseCircle, IoMdImages} from "react-icons/io";
+//import {IoMdCloseCircle, IoMdImages} from "react-icons/io";
 import {get_category} from "../../store/Reducers/categoryReducer";
 import {useDispatch, useSelector} from "react-redux";
-import {get_product, messageClear,update_product} from "../../store/Reducers/productReducer";
+import {get_product, messageClear,update_product,product_image_update} from "../../store/Reducers/productReducer";
 import {PropagateLoader} from "react-spinners";
 import {overrideStyle} from "../../utils/utils";
 import toast from "react-hot-toast";
@@ -95,7 +95,7 @@ const EditProduct = () => {
 
     }
 
-    const [images,setImages]=useState([])
+   // const [images,setImages]=useState([])
     const [imageShow,setImageShow]=useState([])
     // const imageHandle=(e)=> {
     //     const files = e.target.files
@@ -112,8 +112,14 @@ const EditProduct = () => {
     // }
     const changeImage=(img,files)=> {
       if(files.length>0){
-          console.log(img)
-          console.log(files[0])
+          
+          dispatch(product_image_update({
+              oldImage:img,
+              newImage:files[0],
+              productId
+          }))
+          // console.log(img)
+          // console.log(files[0])
           
       }
     }
@@ -148,7 +154,7 @@ const EditProduct = () => {
             setAllCategory(categorys)
             
         }
-    })
+    },[categorys])
     
     
     
