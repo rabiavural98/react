@@ -60,7 +60,7 @@ export const profile_image_upload=createAsyncThunk(
     async(image,{rejectWithValue,fulfillWithValue})=>{
         //console.log(info)
         try{
-            const {data}=await api.post('/profile-image-upload',{withCredentials:false})
+            const {data}=await api.post('/profile-image-upload',image,{withCredentials:false})
             //localStorage.setItem('accessToken',data.token)
             //console.log(data)
             return fulfillWithValue(data)
@@ -174,6 +174,18 @@ export  const authReducer=createSlice({
             .addCase(get_user_info.fulfilled, (state, {payload}) => {
                 state.loader = false;
                 state.userInfo = payload.userInfo
+            })
+
+            .addCase(profile_image_upload.pending, (state, {payload}) => {
+                state.loader = true;
+              //  state.userInfo = payload.userInfo
+            })
+
+            .addCase(profile_image_upload.fulfilled, (state, {payload}) => {
+                state.loader = false;
+                state.userInfo = payload.userInfo
+                state.successMessage = payload.message
+
             })
         
         }

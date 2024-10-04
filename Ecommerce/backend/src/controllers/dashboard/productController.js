@@ -167,7 +167,7 @@ class productController {
                     await productModel.findByIdAndUpdate(productId,{images})
                     
                     const product = await productModel.findById(productId)
-                    responseReturn(res, 200, {message: 'Product Image Updated Successfully'})
+                    responseReturn(res, 200, {product,message: 'Product Image Updated Successfully'})
                         
                     }else{
                     responseReturn(res, 404, {error: 'Image Upload Failed'})
