@@ -2,7 +2,7 @@
 import {FaImages, FaRegEdit} from "react-icons/fa";
 import {FadeLoader, PropagateLoader} from "react-spinners";
 import {useDispatch, useSelector} from "react-redux";
-import {profile_image_upload,messageClear} from "../../store/Reducers/authReducer";
+import {profile_image_upload,messageClear,profile_info_add} from "../../store/Reducers/authReducer";
 import {toast} from "react-hot-toast";
 import {overrideStyle} from "../../utils/utils";
 
@@ -49,6 +49,11 @@ const Profile = () => {
             ...state,
             [e.target.name]:e.target.value
         })
+    }
+    
+    const add = (e) => {
+        e.preventDefault()
+        dispatch(profile_info_add(state))   
     }
     
     return (
@@ -134,7 +139,7 @@ const Profile = () => {
                         
                         <div className='px-0 md:px-5 py-2'>
                             {
-                                !userInfo?.shopInfo ? <form>
+                                !userInfo?.shopInfo ? <form onSubmit={add}>
                                     <div className='flex flex-col w-full gap-1 mb-2'>
                                         <label htmlFor="Shop">Shop Name</label>
                                         <input value={state.shopName} onChange={inputHandle} className='px-4 py-2 focus:border-indigo-500
@@ -166,10 +171,10 @@ const Profile = () => {
                                     </div>
 
                                     <button disabled={loader ? true : false}
-                                            className='bg-red-800 w-[300px] hover:shadow-red-300/50 hover:shadow-lg text-white rounded-md px-7 py- mb-3'>
+                                            className='bg-red-800 w-[200px] hover:shadow-red-300/50 hover:shadow-lg text-white rounded-md px-7 py- mb-3'>
                                         {
                                             loader ?
-                                                <PropagateLoader color='#fff' cssOverride={overrideStyle}/> : 'Add Product'
+                                                <PropagateLoader color='#fff' cssOverride={overrideStyle}/> : 'Save Changes'
                                         }
                                     </button>
 
