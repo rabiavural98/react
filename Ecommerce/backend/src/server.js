@@ -25,6 +25,7 @@ const authRoutes = require('./routes/authRoutes');
 
 const categoryRoutes = require('./routes/dashboard/categoryRoutes');
 const productRoutes = require('./routes/dashboard/productRoutes');
+const sellerRoutes = require('./routes/dashboard/sellerRoutes');
 
 
 // Use routes
@@ -33,6 +34,8 @@ app.use('/api',authRoutes);
 
 app.use('/api',require('./routes/dashboard/categoryRoutes'))
 app.use('/api',require('./routes/dashboard/productRoutes'))
+app.use('/api',require('./routes/dashboard/sellerRoutes'))
+
 
 
 
@@ -41,6 +44,7 @@ app.use(cookieParser());
 
 app.use('/api', categoryRoutes);
 app.use('/api', productRoutes);
+app.use('/api', sellerRoutes);
 
 
 app.get('/',(req,res)=>res.send('My backend'))

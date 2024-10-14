@@ -5,7 +5,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {FaEye} from "react-icons/fa";
 import Search from "../components/Search";
 //import {FaEdit, FaTrash} from "react-icons/fa";
-import {get_seller_request} from "../../store//Reducers/sellerReducer";
+import {get_seller_request} from "../../store/Reducers/sellerReducer";
 
 const SellerRequest = () => {
     

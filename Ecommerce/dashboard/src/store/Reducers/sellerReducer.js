@@ -2,7 +2,6 @@
 import api from "../../api/api";
 
 
-
 //End Method
 
 export const get_seller_request=createAsyncThunk(
