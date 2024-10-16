@@ -58,26 +58,26 @@ const SellerRequest = () => {
 
                         <tbody>
                         {
-                            [1, 2, 3, 4, 5,].map((d, i) => <tr className='border-b border-slate-700' key={i}>
+                            sellers.map((d, i) => <tr className='border-b border-slate-700' key={i}>
                                 <td scope='row' className='py-2 px-4 font-medium
-                           whitespace-nowrap'>{d}
+                           whitespace-nowrap'>{i+1}
                                 </td>
                                 <td scope='row' className='py-2 px-4 font-medium
-                           whitespace-nowrap'>Kazi Ariyan
+                           whitespace-nowrap'>{d.name}
                                 </td>
                                 <td scope='row' className='py-2 px-4 font-medium
-                           whitespace-nowrap'>ariyan@gmail.com
+                           whitespace-nowrap'>{d.email}
                                 </td>
                                 <td scope='row' className='py-2 px-4 font-medium
-                           whitespace-nowrap'><span>Inactive</span>
+                           whitespace-nowrap'><span>{d.payment}</span>
                                 </td>
                                 <td scope='row' className='py-2 px-4 font-medium
-                           whitespace-nowrap'><span>Pending</span>
+                           whitespace-nowrap'><span>{d.status}</span>
                                 </td>
                                 <td scope='row' className='py-2 px-4 font-medium
                            whitespace-nowrap'>
                                     <div className='flex justify-start items-start gap-4'>
-                                        <Link to='/admin/dashboard/seller/details/2'
+                                        <Link to={`/admin/dashboard/seller/details/${d._id}`}
                                             className='p-[6px] bg-green-500 rounded hover:shadow-lg hover:shadow-green-500/50'><FaEye/></Link>
 
 
