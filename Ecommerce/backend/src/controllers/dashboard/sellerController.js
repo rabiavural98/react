@@ -8,32 +8,41 @@ const categoryModel = require("../../models/categoryModel");
 
 class sellerController {
 
-   
+
     request_seller_get = async (req, res) => {
         //console.log(req.query)
         const {parPage, page, searchValue} = req.query
         const skipPage = parseInt(parPage) * (parseInt(page) - 1)
 
-        
-        try{
+
+        try {
             if (searchValue) {
-            
-            }else{
-            const sellers = await sellerModel.find({status: 'pending'}).skip(skipPage).limit(parPage).sort({createdAt: -1})
-            const totalSeller = await sellerModel.find({ status: 'pending'}).countDocuments()
-            responseReturn(res, 500, { error: error.message})
+
+            } else {
+                const sellers = await sellerModel.find({status: 'pending'}).skip(skipPage).limit(parPage).sort({createdAt: -1})
+                const totalSeller = await sellerModel.find({status: 'pending'}).countDocuments()
+                responseReturn(res, 500, {error: error.message})
 
             }
-        }catch(error){ 
-            
+        } catch (error) {
+
         }
     }
     //end method
 
+    get_seller = async (req, res) => {
+        const {sellerId} = req.params
+        try {
+            const seller = await sellerModel.findById(sellerId)
+            responseReturn(res, 200, {seller})
+        } catch (error) {
+            responseReturn(res, 500, {error: error.message})
+        }
+    }
 
+    
+    
 }
-
-
 module.exports = new sellerController()
 
    

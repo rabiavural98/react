@@ -6,6 +6,8 @@ const sellerController=require('../../controllers/dashboard/sellerController')
 
 router.get('/request-seller-get',sellerController.request_seller_get)
 
+router.get('/get-seller/:sellerId',sellerController.get_seller)
+
 
 //router.post('/request-seller-get',authMiddleware,sellerController.request_seller_get)
 

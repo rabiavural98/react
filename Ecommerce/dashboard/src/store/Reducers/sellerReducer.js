@@ -30,7 +30,7 @@ export const get_seller=createAsyncThunk(
 
         try{
 
-            const {data}=await api.get(`/get-seller/`,{withCredentials:false})
+            const {data}=await api.get(`/get-seller/${sellerId}`,{withCredentials:false})
             //withCredentials:true  (video)
             console.log(data)
             return fulfillWithValue(data)
@@ -69,6 +69,10 @@ export  const sellerReducer=createSlice({
                 state.totalSeller = payload.totalSeller;
 
             })
+           .addCase(get_seller.fulfilled, (state, {payload}) => {
+               state.seller = payload.seller;
+
+           })
 
     }
 })
