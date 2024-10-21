@@ -8,6 +8,7 @@ router.get('/request-seller-get',sellerController.request_seller_get)
 
 router.get('/get-seller/:sellerId',sellerController.get_seller)
 
+router.post('/seller-status-update',sellerController.seller_status_update)
 
 //router.post('/request-seller-get',authMiddleware,sellerController.request_seller_get)
 
