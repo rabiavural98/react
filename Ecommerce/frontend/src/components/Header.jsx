@@ -1,7 +1,17 @@
 ﻿import React, {useState} from 'react';
 import {MdEmail} from "react-icons/md";
 import {IoMdArrowDropdown, IoMdPhonePortrait} from "react-icons/io";
-import {FaFacebookF, FaGithub, FaHeart, FaLinkedin, FaList, FaLock, FaTwitter, FaUser} from "react-icons/fa";
+import {
+    FaFacebookF,
+    FaGithub,
+    FaHeart,
+    FaLinkedin,
+    FaList,
+    FaLock,
+    FaPhoneAlt,
+    FaTwitter,
+    FaUser
+} from "react-icons/fa";
 import {Link, useLocation} from "react-router-dom";
 import {FaCartShopping} from "react-icons/fa6";
 
@@ -320,28 +330,30 @@ const Header = () => {
                                     Us</Link>
                             </li>
                         </ul>
+                        
+                         <div className='flex justify-start items-center gap-4 text-black'>
+                                <a href="#"><FaFacebookF/></a>
+                                <a href="#"><FaTwitter/></a>
+                                <a href="#"><FaLinkedin/></a>
+                                <a href="#"><FaGithub/></a>
+                        </div>
+                        
+                        
+                        
+                        <div className='w-full flex justify-end md-lg:justify-start gap-3 items-center'>
+                          <div className='w-[48px] h-[48px] rounded-full flex bg-[#f5f5f5] justify-center items-center'>
+                          <span><FaPhoneAlt /></span>
+                          </div>  
+                            <div className='flex justify-end flex-col gap-1'>
+                                <h2 className='text-sm font-medium text-slate-700'>+134343455</h2>
+                                <span className='text-xs'>Support 24/7</span>
+                                
+                            </div>
+                        </div>
 
 
                     </div>
                 </div>
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
                 
             </div>
 
